@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+ <constant name = "struts.devMode" value = "true" />
+ <constant name="struts.convention.result.path" value="/"></constant>
+ <constant name="struts.ui.theme" value="simple" />
+ <!-- For multiple submit buttons in form -->
+ <constant name="struts.mapper.action.prefix.enabled" value="true" />
+ 
+  <!-- <constant name="struts.convention.default.parent.package" value="defaultpackage"/>-->
+
+<!-- <package name="user" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="authentication"
+				class="taekwondo.interceptors.AuthenticationInterceptor"></interceptor>
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="authentication"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="authStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login" type="redirect">/home.action</result>
+		</global-results>
+
+		<action name="home">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/login.jsp</result>
+		</action>
+
+		<action name="login" class="taekwondo.actions.LoginAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/welcome.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="welcome" class="taekwondo.actions.WelcomeAction">
+			<result name="success">/welcome.jsp</result>
+		</action>
+
+	</package>
+-->	
+	
+ 	<package name="user" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="authentication"
+				class="taekwondo.interceptors.AuthenticationInterceptor"></interceptor>
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="authentication"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="authStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login" type="redirect">/home.action</result>
+		</global-results>
+		
+		
+		<action name="logout" class="taekwondo.actions.LogoutAction">
+			<result name="success">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="home">			
+			 <interceptor-ref name="defaultStack"></interceptor-ref> 
+			<result>/login.jsp</result>
+		</action>
+		
+
+		<action name=""><result>/login.jsp</result></action> 
+		
+		<action name="login" class="taekwondo.actions.LoginAction">
+			  <interceptor-ref name="defaultStack"></interceptor-ref> 
+			<!-- <result name="success">/dashboard.jsp</result> -->
+			
+			<result name="success" type="redirectAction">
+		        <param name="actionName">dashboard</param>
+		     </result>
+			
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="dashboard" class="taekwondo.actions.DashboardAction">
+			<result name="success">/dashboard.jsp</result>
+		</action>
+		
+		<action name="welcome" class="taekwondo.actions.WelcomeAction">
+			<result name="success">/welcome.jsp</result>
+		</action>
+		
+		<!-- <action name="dashboard" class="taekwondo.actions.SuccessAction">
+			<result name="success">/dashboard.jsp</result>
+		</action> -->
+		
+		<action name="check" class="taekwondo.actions.ClassWiseStudentsAction">
+			<result name="success">/ClassWiseStudents.jsp</result>
+		</action>
+		<action name="check2" class="taekwondo.actions.RevenueAction">
+			<result name="success">/revenue.jsp</result>
+		</action>
+		
+		<action name="graph" class="taekwondo.actions.DashboardAction" method ="execute" >
+			<result name="success">/CityWiseStudentGraph.jsp</result>
+			<result name="input">/dashboard.jsp</result>
+		</action>
+		
+		<action name="student" class="taekwondo.actions.SuccessAction">
+			<result name="success">/mainStudent.jsp</result>
+		</action>
+		<action name="class" class="taekwondo.actions.SuccessAction">
+			<result name="success">/mainClass.jsp</result>
+		</action>
+		<action name="inventory" class="taekwondo.actions.SuccessAction">
+			<result name="success">/mainInventory.jsp</result>
+		</action>
+		<action name="order" class="taekwondo.actions.SuccessAction">
+			<result name="success">/mainOrder.jsp</result>
+		</action>				
+		<action name="rank" class="taekwondo.actions.SuccessAction">
+			<result name="success">/mainRank.jsp</result>
+		</action>
+		
+		<action name="fee" class="taekwondo.actions.SuccessAction">
+			<result name="success">/mainFee.jsp</result>
+		</action>
+		
+		
+		<action name="attendance" class="taekwondo.actions.ViewClassesForAttendanceAction">
+			<result name="success">/mainAttendance.jsp</result>
+		</action>
+		
+		<action name="StudentsForRank" class="taekwondo.actions.StudentsForRankAction">
+			<result name="success">/StudentsForRank.jsp</result>
+			<result name="input">/viewAllRanks.jsp</result>
+		</action>
+		
+		<action name="ClassStudentsForAttendance" class="taekwondo.actions.ViewClassStudentsForAttendanceAction">
+			<result name="success">/viewClassStudentsForAttendance.jsp</result>
+			<result name="input">/mainAttendance.jsp</result>
+		</action>
+		
+		<action name="MarkAttendance" class="taekwondo.actions.MarkAttendanceAction">
+			<!-- <result name="success">/mainAttendance.jsp</result> -->
+			<result name="success" type="redirectAction">
+		        <param name="actionName">attendance</param>
+		       <!--  <param name="tempOrderID">${tempOrderID}</param> -->
+	        </result>
+			<!-- <result name="input">/viewClassStudentsForAttendance.jsp</result> -->
+			<result name="input" type="redirectAction">
+		        <param name="actionName">ClassStudentsForAttendance</param>
+		       <param name="classID">${classID}</param>
+	        </result>
+		</action>
+		
+		<action name="ViewClassAttendanceFormSetup" class="taekwondo.actions.ViewClassAttendanceFormSetupAction">
+			<result name="success">/classAttendanceViewForm.jsp</result>
+			<result name="input" type="redirectAction">
+		        <param name="actionName">attendance</param>
+		     </result>
+		</action>
+		
+		<action name="ViewClassAttendance" class="taekwondo.actions.ViewClassAttendanceAction">
+			<result name="success">/viewClassAttendance.jsp</result>
+			<result name="input" type="redirectAction">
+		        <param name="actionName">ViewClassAttendanceFormSetup</param>
+		         <param name="classID">${classID}</param>
+		     </result>
+		</action>
+		
+		
+		
+		<action name="AddNewProductForm" class="taekwondo.actions.SuccessAction">
+			<result name="success">/addProductForm.jsp</result>
+		</action>
+		
+		<action name="AddNewProduct" class="taekwondo.actions.AddNewProductAction">
+			<result name="success">/mainInventory.jsp</result>
+			<result name="input">/addProductForm.jsp</result>
+		</action>
+		
+		<action name="ViewAllProducts" class="taekwondo.actions.ViewAllProductsAction">
+			<result name="success">/viewAllProducts.jsp</result>
+			<result name="input">/mainProduct.jsp</result>
+		</action>
+		
+		
+		
+		<action name="AddNewOrderForm" class="taekwondo.actions.AddOrderSetupAction">
+			<result name="success">/addOrderForm.jsp</result>
+		</action>
+		
+		<action name="AddNewOrder" class="taekwondo.actions.AddNewOrderAction">
+			<result name="success" type="redirectAction">
+		        <param name="actionName">AddNewProductInOrder</param>
+		        <param name="tempOrderID">${tempOrderID}</param>
+	        </result>			
+			<result name="input">/addOrderForm.jsp</result>
+		</action>
+		
+		
+		
+		<action name="AddNewProductInOrder" class="taekwondo.actions.AddNewProductInOrderAction">
+			<result name="success">/addProductInOrderForm.jsp</result>
+			<result name="input">/addProductInOrderForm.jsp</result>
+		</action>
+		
+		<action name="AddFinalProductInOrder" class="taekwondo.actions.AddFinalProductInOrderAction">
+			<result name="success">/viewOrderInvoice.jsp</result>
+			<result name="input">/addProductInOrderForm.jsp</result>
+		</action>
+		
+		
+		
+		<action name="ViewAllOrders" class="taekwondo.actions.ViewAllOrdersAction">
+			<result name="success">/viewAllOrders.jsp</result>
+			<result name="input">/mainOrder.jsp</result>
+		</action>
+		
+		<action name="ViewOrderDetails" class="taekwondo.actions.ViewOrderDetailsAction">
+			<result name="success">/viewOrderDetails.jsp</result>
+			<result name="input" type="redirectAction">
+		        <param name="actionName">ViewAllOrders</param>
+		     </result>
+		</action>
+		
+		
+		<action name="AddNewClassForm" class="taekwondo.actions.AddNewClassFormSetupAction">
+			<result name="success">/addClassForm.jsp</result>
+		</action>
+		
+		<action name="AddNewClass" class="taekwondo.actions.AddNewClassAction">
+			<result name="success">/mainClass.jsp</result>
+			<result name="input">/addClassForm.jsp</result>
+		</action>
+		
+		<action name="ViewAllClasses" class="taekwondo.actions.ViewAllClassesAction" method ="execute" >
+			<result name="success">/viewAllClasses.jsp</result>
+			<result name="input">/mainClass.jsp</result>
+		</action>
+		
+		<action name="ViewClassStudents" class="taekwondo.actions.ViewClassStudentsAction" method ="execute" >
+			<result name="success">/viewClassStudents.jsp</result>
+			<result name="input" type="redirectAction">
+		        <param name="actionName">ViewAllClasses</param>
+		     </result>
+		</action>
+		
+		
+		
+		<action name="ViewClassSchedule" class="taekwondo.actions.ViewClassScheduleAction" method ="execute" >
+			<result name="success">/viewClassAvailability.jsp</result>
+			<result name="input">/mainStudent.jsp</result>
+		</action>
+		
+		<action name="AddClassAvailabilityFormSetup" class="taekwondo.actions.AddClassAvailabilityFormSetupAction" method ="execute" >
+			<result name="success">/addClassAvailability.jsp</result>
+			<result name="input">/viewAllClasses.jsp</result>
+		</action>
+		
+		<action name="AddClassAvailability" class="taekwondo.actions.AddClassAvailabilityAction" method ="execute" >
+			<result name="success" type="redirectAction">
+		        <param name="actionName">ViewAllClasses</param>
+	        </result>
+			<result name="input">/addClassAvailability.jsp</result>
+		</action>
+		
+		<action name="AddStudentInClassFormSetup" class="taekwondo.actions.AddStudentsInClassFormSetupAction" method ="execute" >
+			<result name="success">/addStudentsInClassForm.jsp</result>
+			<result name="input">/viewAllClasses.jsp</result>
+		</action>
+		
+		<action name="AddStudentInClass" class="taekwondo.actions.AddStudentsInClassAction" method ="execute" >
+			<result name="success" type="redirectAction">
+		        <param name="actionName">ViewAllClasses</param>
+	        </result>
+			<result name="input">/addStudentsInClassForm.jsp</result>
+		</action>
+		
+		
+		
+		
+		
+		<action name="AddStudentRankFormSetup" class="taekwondo.actions.AddStudentsRankFormSetupAction" method ="execute" >
+			<result name="success">/addStudentsRankForm.jsp</result>
+			<result name="input">/viewAllStudents.jsp</result>
+		</action>
+		
+		<action name="AddStudentRank" class="taekwondo.actions.AddStudentsRankAction" method ="execute" >
+			<result name="success" type="redirectAction">
+		        <param name="actionName">ViewAllStudents</param>
+	        </result>
+			<result name="input">/addStudentsRankForm.jsp</result>
+		</action>
+		
+		
+		
+		
+		
+		<action name="AddNewRankForm" class="taekwondo.actions.SuccessAction">
+			<result name="success">/addRankForm.jsp</result>
+		</action> 
+		
+		<action name="AddNewRank" class="taekwondo.actions.AddNewRankAction">
+			<result name="success">/mainRank.jsp</result>
+			<result name="input">/addRankForm.jsp</result>
+		</action>
+		
+		<action name="ViewAllRanks" class="taekwondo.actions.ViewAllRanksAction"  method ="execute" >
+			<result name="success">/viewAllRanks.jsp</result>
+			<result name="input">/mainRank.jsp</result>
+		</action>
+		
+		<action name="searchStudentForFee" class="taekwondo.actions.AddFeeSetupAction">
+			<result name="success">/addFeeForm.jsp</result>
+			<result name="input">/studentSearchForFee.jsp</result>
+		</action> 
+		
+		 <action name="AddFeeForm" class="taekwondo.actions.SuccessAction">
+			<result name="success">/studentSearchForFee.jsp</result>
+		</action> 
+		
+		<action name="AddFee" class="taekwondo.actions.AddFeeAction">
+			<result name="success">/mainFee.jsp</result>
+			<result name="input">/addFeeForm.jsp</result>
+		</action>
+		
+		<action name="ViewAllFee" class="taekwondo.actions.ViewAllFeeAction"  method ="execute" >
+			<result name="success">/viewAllFee.jsp</result>
+			<result name="input">/mainFee.jsp</result>
+		</action>
+		
+		
+		<action name="StudentRegistrationForm" class="taekwondo.actions.StudentRegistrationFormSetupAction">
+			<result name="success">/addStudentForm.jsp</result>
+			<result name="input">/mainStudent.jsp</result>
+		</action>		
+		
+		<action name = "StudentRegister"  class = "taekwondo.actions.StudentRegisterationAction"  
+      			method = "execute">
+         <result name = "success">/addParentForm.jsp</result>
+         <result name = "input">StudentDetails</result>
+      </action>
+      
+      <!-- <action name = "StudentRegister"  class = "taekwondo.actions.StudentRegisterationAction"  
+      			method = "execute">         
+         <result name="success" type="redirectAction">
+		        <param name="actionName">AddNewParentSetupForm</param>
+		        <param name="tempStudentID">${tempStudentID}</param>
+	        </result>	        
+         <result name = "input">StudentDetails</result>
+      </action>
+      
+      <action name="AddNewParentFormSetup" class="taekwondo.actions.AddNewParentFormSetupAction">
+			<result name = "success">/addParentForm.jsp</result>
+		</action>-->
+      
+      
+      <action name = "AddNewParent"  class = "taekwondo.actions.AddNewParentAction"  
+      			method = "execute">
+        <!--  <result name = "success">/mainStudent.jsp</result> -->
+         <result name="success" type="redirectAction">
+		        <param name="actionName">StudentDetails</param>
+		        <param name="studentID">${tempStudentID}</param>
+	        </result>
+         <result name = "input">/addParentForm.jsp</result>
+      </action>
+      
+      <action name = "StudentDetails"  class = "taekwondo.actions.ViewStudentDetailsAction"  
+      			method = "execute">
+         <result name = "success">/viewStudentDetails.jsp</result>
+         <result name = "input">/viewAllStudents.jsp</result>
+      </action>
+      
+      <action name = "ViewAllStudents"  class = "taekwondo.actions.StudentListViewAction"  
+      			method = "execute">
+         <result name = "success">/viewAllStudents.jsp</result>
+         <result name = "input">/student-registration.jsp</result>
+      </action>
+      
+      <action name = "StudentProgress"  class = "taekwondo.actions.StudentProgressAction"  
+      			method = "execute">
+         <result name = "success">/studentProgressGraph.jsp</result>
+         <result name = "input">/viewAllStudents.jsp</result>
+      </action>
+      
+      
+      <action name="UpdateStudentRankForm" class="taekwondo.actions.SuccessAction">
+			<result name="success">/updateStudentRankForm.jsp</result>
+		</action>
+		
+      <action name="UpdateStudentRank" class="taekwondo.actions.UpdateStudentRankAction">
+			<result name="success">/viewAllStudents.jsp</result>
+			<result name="input">/updateStudentRankForm.jsp</result>
+		</action>
+		
+
+	</package>
+
+
+<!-- 
+   <constant name = "struts.devMode" value = "true" />
+   <constant name="struts.convention.default.parent.package" value="default"/>
+   <package name = "default" extends = "struts-default">
+   <interceptors>
+	    <interceptor name="authenticationInterceptor" class="taekwondo.interceptor.AuthenticationInterceptor"/>	
+	    <interceptor-stack name="secureStack">	       
+	        <interceptor-ref name="authenticationInterceptor"/>	
+	         <interceptor-ref name="defaultStack"/>	
+	    </interceptor-stack>	
+	</interceptors>
+	<default-interceptor-ref name="secureStack"/>
+  
+   
+   <global-results>   
+     <result name="loginRedirect" type="redirect" >/login.action</result>
+	</global-results>
+	
+	
+	<action name = "loginRedirectDone" >
+         <result>/userlogin.jsp</result>
+    </action>
+    
+     <action name = "hello"  class = "HelloWorldAction"  method = "execute">
+         <result name = "success">/HelloWorld.jsp</result>
+         <result name = "input">/index.jsp</result>
+      </action>
+      <action name = "StudentRegister"  class = "taekwondo.action.StudentRegisterationAction"  
+      			method = "execute">
+         <result name = "success">/parentDetails.jsp</result>
+         <result name = "input">/studentRegister.jsp</result>
+      </action>
+      <action name = "login" >
+         <result>/userlogin.jsp</result>
+      </action>
+       <action name = "UserAuthentication"  class = "taekwondo.action.LoginAction"  method = "execute">
+         <result name = "success">/dashboard.jsp</result>
+         <result name = "input">/userlogin.jsp</result>
+      </action>
+      
+      
+      
+   </package>
+-->
+</struts>

@@ -2,9 +2,9 @@
 Website for Taekwondo instructor to keep track his students, inventory, schedule classes, mark attendance etc.
 
 ### Technologies: 		
-Backend : **Java, Strut2(MVC framework), Hibernate (ORM tool)**
-Front end: **HTML, CSS, jQuery, JavaScript, Bootstrap**
-Database: **Oracle 11g (Express edition)**
+* Backend : **Java, Strut2(MVC framework), Hibernate (ORM tool)**
+* Front end: **HTML, CSS, jQuery, JavaScript, Bootstrap**
+* Database: **Oracle 11g (Express edition)**
 
 
 ### STEPS TO RUN THE SYSTEM:

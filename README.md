@@ -1,7 +1,13 @@
 # Taekwondo_Academy
 Website for Taekwondo instructor to keep track his students, inventory, schedule classes, mark attendance etc.
 
-## STEPS TO RUN THE SYSTEM:
+### Technologies: 		
+Backend : **Java, Strut2(MVC framework), Hibernate (ORM tool)**
+Front end: **HTML, CSS, jQuery, JavaScript, Bootstrap**
+Database: **Oracle 11g (Express edition)**
+
+
+### STEPS TO RUN THE SYSTEM:
 1. Install the oracle database on machine preferably 11g (standard or express edition).
 2. Run all the SQL queries from file **DB_Creation_Scripts\Create_User_Schema_Queries.sql** in SYS or SYSTEM user of
 database to create the database schema/user DB_OWNER and to grant the appropriate privileges. (SQL developer tool can be used to run SQL queries in database)
